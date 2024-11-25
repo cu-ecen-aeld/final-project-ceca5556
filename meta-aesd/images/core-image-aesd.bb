@@ -10,11 +10,16 @@ CORE_IMAGE_EXTRA_INSTALL += "opencv opencv-samples libopencv-core libopencv-imgp
 # image output type
 IMAGE_FSTYPES = "rpi-sdimg"
 
+#x11?
+#DISTRO_FEATURES_append = " x11 systemd"
+IMAGE_FEATURES:append = " splash x11-base x11-sato hwcodecs"
+
 # opencv dependencies
-#IMAGE_INSTALL:append = "opencv libopencv-core libopencv-imgproc"
+#IMAGE_INSTALL:append = " opencv libopencv-core libopencv-imgproc"
 
 #python
-IMAGE_INSTALL:append = "python3"
+IMAGE_INSTALL:append = " python3"
+
 
 inherit extrausers
 # See https://docs.yoctoproject.org/singleindex.html#extrausers-bbclass
