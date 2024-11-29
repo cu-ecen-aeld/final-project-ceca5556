@@ -5,6 +5,8 @@ CORE_IMAGE_EXTRA_INSTALL += "openssh"
 
 CORE_IMAGE_EXTRA_INSTALL += "opencv-test"
 
+CORE_IMAGE_EXTRA_INSTALL += "adas"
+
 CORE_IMAGE_EXTRA_INSTALL += "opencv opencv-samples libopencv-core libopencv-imgproc"
 
 # image output type
