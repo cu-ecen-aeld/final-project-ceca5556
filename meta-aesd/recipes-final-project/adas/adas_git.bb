@@ -24,12 +24,15 @@ S = "${WORKDIR}/git/ADAS"
 
 # TODO: Add the aesdsocket application and any other files you need to install
 # See https://git.yoctoproject.org/poky/plain/meta/conf/bitbake.conf?h=kirkstone
-FILES:${PN} += "${bindir}"
+#FILES:${PN} += "${bindir}"
+FILES_${PN} += "${ROOT_HOME}/avadas"
+FILES_${PN} += "${ROOT_HOME}/adas_video.mp4"
+FILES_${PN} += "${ROOT_HOME}/stop_sign_classifier_2.xml"
 
 # TODO: customize these as necessary for any libraries you need for your application
 # (and remove comment)
 TARGET_CXXFLAGS += "-O3 -fopenmp -g -Wall -Werror"
-TARGET_LDFLAGS += "-pthread -lrt -L/usr/lib -lopencv_core -lopencv_flann -lopencv_video -lrt -lstdc++fs -lstdc++ -lopencv_gapi"
+TARGET_LDFLAGS += "-lpthread -lrt -L/usr/lib -lopencv_core -lopencv_flann -lopencv_video -lrt -lstdc++fs -lstdc++ -lopencv_gapi `pkg-config --cflags opencv4` `pkg-config --libs opencv4`"
 
 
 do_configure () {
@@ -37,8 +40,8 @@ do_configure () {
 }
 
 do_compile () {
-	#oe_runmake
-	${CXX} ${CXXFLAGS} ${LDFLAGS} ${S}/avadas.cpp `pkg-config --cflags opencv4` `pkg-config --libs opencv4` -o avadas
+	oe_runmake
+	#${CXX} ${CXXFLAGS} ${LDFLAGS} ${S}/avadas.cpp `pkg-config --cflags opencv4` `pkg-config --libs opencv4` -o avadas
 }
 
 do_install () {
@@ -50,10 +53,14 @@ do_install () {
 	# https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-S
 	# See example at https://github.com/cu-ecen-aeld/ecen5013-yocto/blob/ecen5013-hello-world/meta-ecen5013/recipes-ecen5013/ecen5013-hello-world/ecen5013-hello-world_git.bb
 
-	install -d ${D}${bindir}
-	install -m 0755 ${S}/avadas ${D}${bindir}/
-	install -m 0755 ${S}/IMG_2839_MOV_AdobeExpress.mp4 ${D}${bindir}/adas_video.mp4
-	install -m 0755 ${S}/stop_sign_classifier_2.xml ${D}${bindir}/
+	#install -d ${D}${bindir}
+	#install -m 0755 ${S}/avadas ${D}${bindir}/
+	#install -m 0755 ${S}/IMG_2839_MOV_AdobeExpress.mp4 ${D}${bindir}/adas_video.mp4
+	#install -m 0755 ${S}/stop_sign_classifier_2.xml ${D}${bindir}/
 
+	install -d ${D}${ROOT_HOME}
+	install -m 0755 ${S}/avadas ${D}${ROOT_HOME}/
+	install -m 0755 ${S}/IMG_2839_MOV_AdobeExpress.mp4 ${D}${ROOT_HOME}/adas_video.mp4
+	install -m 0755 ${S}/stop_sign_classifier_2.xml ${D}${ROOT_HOME}/
 
 }
