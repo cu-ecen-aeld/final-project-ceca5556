@@ -3,7 +3,7 @@ CORE_IMAGE_EXTRA_INSTALL += "openssh"
 
 #CORE_IMAGE_EXTRA_INSTALL += "aesd-assignments"
 
-CORE_IMAGE_EXTRA_INSTALL += "opencv-test"
+#CORE_IMAGE_EXTRA_INSTALL += "opencv-test"
 
 CORE_IMAGE_EXTRA_INSTALL += "adas"
 
