@@ -32,7 +32,7 @@ FILES_${PN} += "${ROOT_HOME}/stop_sign_classifier_2.xml"
 # TODO: customize these as necessary for any libraries you need for your application
 # (and remove comment)
 TARGET_CXXFLAGS += "-O3 -fopenmp -g -Wall -Werror"
-TARGET_LDFLAGS += "-lpthread -lrt -L/usr/lib -lopencv_core -lopencv_flann -lopencv_video -lrt -lstdc++fs -lstdc++ -lopencv_gapi `pkg-config --cflags opencv4` `pkg-config --libs opencv4`"
+TARGET_LDFLAGS += "-lpthread -lrt -L/usr/lib -lopencv_core -lopencv_flann -lopencv_video `pkg-config --cflags opencv4` `pkg-config --libs opencv4`"
 
 
 do_configure () {
